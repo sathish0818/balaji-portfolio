@@ -1,0 +1,388 @@
+<!--
+  BALAJI G — FILM EDITOR
+  Colorful / playful portfolio — Single Page Website
+  Purple primary + multi-colour accents · Light & Dark mode
+  HTML5 + CSS3 + Vanilla JS. No frameworks.
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#7C3AED" />
+
+<!-- ===================== SEO ===================== -->
+<title>Balaji G — Film Editor | Cutting Stories That Move People</title>
+<meta name="description" content="Balaji G — Film Editor with 6+ years in post-production: narrative films, documentaries, music videos & commercials. Based in Chennai, India." />
+<meta name="keywords" content="Balaji G, Film Editor, Video Editor, Post Production, DaVinci Resolve, Final Cut Pro, Chennai" />
+<meta name="author" content="Balaji G" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Balaji G — Film Editor" />
+<meta property="og:description" content="I edit for emotion. 6+ years cutting stories that move people." />
+<meta property="og:image" content="assets/images/balaji-placeholder.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Balaji G",
+  "jobTitle": "Film Editor",
+  "email": "mailto:ganesanbalaji4@gmail.com",
+  "telephone": "+91-7708688863",
+  "address": { "@type": "PostalAddress", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "addressCountry": "India" },
+  "sameAs": ["https://instagram.com/balaji__g", "https://youtube.com/", "https://linkedin.com/"]
+}
+</script>
+
+<!-- ===================== FONTS ===================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+<!-- ============================================================ LOADER ============================================================ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__blob"></div>
+  <span class="loader__text">Balaji<span class="dot">.</span>g</span>
+  <div class="loader__bar"><span id="loaderProgress"></span></div>
+</div>
+
+<!-- ============================================================ THEME TOGGLE ============================================================ -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light mode" title="Toggle theme">
+  <span class="theme-toggle__thumb" aria-hidden="true"><span class="sun">☀</span><span class="moon">☾</span></span>
+</button>
+
+<a href="#hero" class="skip-link">Skip to content</a>
+
+<!-- ============================================================ NAV ============================================================ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__brand" aria-label="Balaji G home">
+    <span class="nav__brand-mark" aria-hidden="true">B</span> Balaji<span class="nav__brand-dot">.</span>g
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#hero">Home</a>
+    <a href="#services">What I Do</a>
+    <a href="#works">My Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="nav__right">
+    <span class="nav__pill">Balaji</span>
+    <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="#hero">Home</a>
+    <a href="#services">What I Do</a>
+    <a href="#works">My Work</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Voices</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ============================================================ 1. HERO ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Playful floating sticker doodles -->
+    <span class="doodle doodle--star" style="--x:8%;  --y:22%;" aria-hidden="true">✦</span>
+    <span class="doodle doodle--ring" style="--x:6%;  --y:64%;" aria-hidden="true"></span>
+    <span class="doodle doodle--zig"  style="--x:46%; --y:12%;" aria-hidden="true">〰</span>
+    <span class="doodle doodle--dot"  style="--x:88%; --y:70%;" aria-hidden="true"></span>
+    <span class="doodle doodle--plus" style="--x:92%; --y:16%;" aria-hidden="true">+</span>
+    <span class="doodle doodle--arc"  style="--x:2%;  --y:40%;" aria-hidden="true">↝</span>
+
+    <div class="hero__grid">
+      <div class="hero__text">
+        <p class="hero__hi reveal">Hi, my name is Balaji <span class="wave" aria-hidden="true">👋</span></p>
+        <h1 class="hero__title reveal">
+          I edit for <span class="hl hl--purple">emotion</span>,<br />
+          I cut for <span class="hl hl--pink">impact</span>.
+        </h1>
+        <p class="hero__lead reveal">
+          Senior Film Editor with 6+ years in post-production — narrative films,
+          documentaries, music videos &amp; commercials. I shape rhythm, feeling and story
+          in the edit.
+        </p>
+        <div class="hero__cta reveal">
+          <a href="#works" class="btn btn--primary magnetic" data-magnetic>View my work →</a>
+          <a href="#contact" class="btn btn--ghost magnetic" data-magnetic>Let's collaborate</a>
+        </div>
+        <ul class="hero__stats reveal">
+          <li><strong>6+</strong><span>Years</span></li>
+          <li><strong>40+</strong><span>Projects</span></li>
+          <li><strong>5★</strong><span>Craft</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__media reveal">
+        <div class="hero__photo-wrap">
+          <!-- Drop assets/images/balaji.jpg to replace the placeholder automatically -->
+          <img
+            src="assets/images/balaji.jpg"
+            onerror="this.onerror=null;this.src='assets/images/balaji-placeholder.svg'"
+            alt="Portrait of Balaji G, Film Editor"
+            class="hero__photo" width="520" height="620" fetchpriority="high" decoding="async" />
+          <!-- Sticker badges on the photo -->
+          <span class="sticker sticker--play" aria-hidden="true">▶</span>
+          <span class="sticker sticker--badge" aria-hidden="true">6+ yrs<small>in post</small></span>
+          <span class="sticker sticker--chip" aria-hidden="true">🎬 Now editing</span>
+          <span class="sticker sticker--emoji" aria-hidden="true">✂️</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colorful marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>NARRATIVE FILMS ✦ DOCUMENTARIES ✦ MUSIC VIDEOS ✦ COMMERCIALS ✦ SHORT FILMS ✦ BRAND CAMPAIGNS ✦&nbsp;</span>
+        <span>NARRATIVE FILMS ✦ DOCUMENTARIES ✦ MUSIC VIDEOS ✦ COMMERCIALS ✦ SHORT FILMS ✦ BRAND CAMPAIGNS ✦&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 2. SERVICES / WHAT I DO ============================================================ -->
+  <section class="section services" id="services">
+    <div class="section__head">
+      <p class="section__kicker reveal">Passion led us here</p>
+      <h2 class="section__title reveal">What I can do <span class="hl hl--purple">for you</span></h2>
+    </div>
+
+    <div class="services__grid">
+      <article class="service-card reveal" style="--c:var(--c-purple)">
+        <span class="service-card__icon">🎞️</span>
+        <h3>Narrative Editing</h3>
+        <p>Feature films &amp; short films — pacing, structure and emotional storytelling from first cut to final.</p>
+      </article>
+      <article class="service-card reveal" style="--c:var(--c-teal)">
+        <span class="service-card__icon">🎨</span>
+        <h3>Color &amp; Finishing</h3>
+        <p>DaVinci Resolve grading, look development and clean deliverables ready for any screen.</p>
+      </article>
+      <article class="service-card reveal" style="--c:var(--c-pink)">
+        <span class="service-card__icon">✨</span>
+        <h3>Motion &amp; VFX</h3>
+        <p>After Effects titles, montages and visual effects that lift the story without stealing it.</p>
+      </article>
+      <article class="service-card reveal" style="--c:var(--c-yellow)">
+        <span class="service-card__icon">🎵</span>
+        <h3>Music Videos</h3>
+        <p>Rhythm-first edits synced to the beat — energetic cuts built for artists and labels.</p>
+      </article>
+      <article class="service-card reveal" style="--c:var(--c-blue)">
+        <span class="service-card__icon">🎥</span>
+        <h3>Documentaries</h3>
+        <p>Honest, character-driven edits that respect the footage and find the truth in it.</p>
+      </article>
+      <article class="service-card reveal" style="--c:var(--c-coral)">
+        <span class="service-card__icon">📣</span>
+        <h3>Commercials &amp; Brand</h3>
+        <p>Punchy campaign edits and corporate films crafted to convert and stay on brand.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================ 3. WORKS ============================================================ -->
+  <section class="section works" id="works">
+    <div class="section__head">
+      <p class="section__kicker reveal">Selected edits</p>
+      <h2 class="section__title reveal">My <span class="hl hl--pink">work</span></h2>
+      <p class="section__lead reveal">Tap any project to watch.</p>
+    </div>
+    <div class="works__grid" id="worksGrid" role="list"></div>
+  </section>
+
+  <!-- ============================================================ 4. EXPERIENCE ============================================================ -->
+  <section class="section experience" id="experience">
+    <div class="section__head">
+      <p class="section__kicker reveal">The journey</p>
+      <h2 class="section__title reveal">Experience <span class="hl hl--teal">timeline</span></h2>
+    </div>
+
+    <ol class="timeline" aria-label="Work experience">
+      <li class="timeline__item reveal" style="--c:var(--c-purple)">
+        <div class="timeline__card"><span class="timeline__year">2025–2026</span><h3>Assistant Editor</h3><p>Mookuthi Amman 2</p></div>
+      </li>
+      <li class="timeline__item reveal" style="--c:var(--c-pink)">
+        <div class="timeline__card"><span class="timeline__year">2024</span><h3>Editor</h3><p>A Song for Eresha</p></div>
+      </li>
+      <li class="timeline__item reveal" style="--c:var(--c-teal)">
+        <div class="timeline__card"><span class="timeline__year">2023–2024</span><h3>Assistant Editor</h3><p>Nanban Oruvan Vantha Piragu</p></div>
+      </li>
+      <li class="timeline__item reveal" style="--c:var(--c-yellow)">
+        <div class="timeline__card"><span class="timeline__year">2023–2024</span><h3>Assistant Editor</h3><p>Aranmanai 4</p></div>
+      </li>
+      <li class="timeline__item reveal" style="--c:var(--c-blue)">
+        <div class="timeline__card"><span class="timeline__year">2020–2023</span><h3>Editor</h3><p>Sixmask Films</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================ 5. ABOUT ============================================================ -->
+  <section class="section about" id="about">
+    <div class="about__grid">
+      <div class="about__media reveal">
+        <div class="about__photo-wrap">
+          <img
+            src="assets/images/balaji.jpg"
+            onerror="this.onerror=null;this.src='assets/images/balaji-placeholder.svg'"
+            alt="Balaji G at the editing suite" class="about__photo"
+            width="500" height="600" loading="lazy" decoding="async" />
+          <span class="sticker sticker--chip about__chip" aria-hidden="true">📍 Chennai, India</span>
+        </div>
+      </div>
+
+      <div class="about__body">
+        <p class="section__kicker reveal">About me</p>
+        <h2 class="section__title reveal">Cutting stories that <span class="hl hl--purple">move people</span></h2>
+        <p class="about__text reveal">
+          Highly skilled Film Editor with <strong>6+ years</strong> of experience in
+          post-production, specializing in narrative films, documentaries, music videos
+          and commercial projects.
+        </p>
+        <p class="about__text reveal">
+          Passionate about visual storytelling and creating emotionally engaging cinematic
+          experiences. Every cut serves the story — rhythm, emotion and truth.
+        </p>
+
+        <h3 class="about__skills-title reveal">My toolkit</h3>
+        <ul class="chips" aria-label="Software skills">
+          <li class="chip reveal" style="--c:var(--c-purple)">Final Cut Pro</li>
+          <li class="chip reveal" style="--c:var(--c-teal)">DaVinci Resolve</li>
+          <li class="chip reveal" style="--c:var(--c-pink)">After Effects</li>
+          <li class="chip reveal" style="--c:var(--c-yellow)">Photoshop</li>
+          <li class="chip reveal" style="--c:var(--c-blue)">Illustrator</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6. TESTIMONIALS (voice notes) ============================================================ -->
+  <section class="section testimonials" id="testimonials">
+    <div class="section__head">
+      <p class="section__kicker reveal">Kind words</p>
+      <h2 class="section__title reveal">Voices from <span class="hl hl--coral">the set</span></h2>
+      <p class="section__lead reveal">Press play to hear them.</p>
+    </div>
+    <div class="testimonials__grid" id="testimonialsGrid"></div>
+  </section>
+
+  <!-- ============================================================ 7. SOCIAL ============================================================ -->
+  <section class="section social" id="social">
+    <div class="section__head">
+      <p class="section__kicker reveal">Let's connect</p>
+      <h2 class="section__title reveal">Find me <span class="hl hl--teal">online</span></h2>
+    </div>
+    <div class="social__grid">
+      <a href="https://instagram.com/balaji__g" target="_blank" rel="noopener noreferrer" class="social-card reveal magnetic" data-magnetic style="--c:var(--c-pink)">
+        <span class="social-card__icon">📸</span><span class="social-card__label">Instagram</span><span class="social-card__handle">@balaji__g</span><span class="social-card__arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-card reveal magnetic" data-magnetic style="--c:var(--c-coral)">
+        <span class="social-card__icon">▶️</span><span class="social-card__label">YouTube</span><span class="social-card__handle">Watch the reel</span><span class="social-card__arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-card reveal magnetic" data-magnetic style="--c:var(--c-blue)">
+        <span class="social-card__icon">💼</span><span class="social-card__label">LinkedIn</span><span class="social-card__handle">Connect</span><span class="social-card__arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href="mailto:ganesanbalaji4@gmail.com" class="social-card reveal magnetic" data-magnetic style="--c:var(--c-purple)">
+        <span class="social-card__icon">✉️</span><span class="social-card__label">Email</span><span class="social-card__handle">Say hello</span><span class="social-card__arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================ 8. CONTACT ============================================================ -->
+  <section class="section contact" id="contact">
+    <div class="contact__grid">
+      <div class="contact__info reveal">
+        <p class="section__kicker">Got a project?</p>
+        <h2 class="section__title">Let's build something <span class="hl hl--purple">cinematic</span></h2>
+        <ul class="contact__list">
+          <li><span>📞 Phone</span><a href="tel:+917708688863">+91 7708688863</a></li>
+          <li><span>✉️ Email</span><a href="mailto:ganesanbalaji4@gmail.com">ganesanbalaji4@gmail.com</a></li>
+          <li><span>📍 Location</span><p>Chennai, Tamil Nadu, India</p></li>
+        </ul>
+      </div>
+
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" />
+          <small class="field__error" data-error-for="name"></small>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@email.com" />
+          <small class="field__error" data-error-for="email"></small>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="Optional" />
+          <small class="field__error" data-error-for="phone"></small>
+        </div>
+        <div class="field">
+          <label for="projectType">Project Type</label>
+          <select id="projectType" name="projectType" required>
+            <option value="">Select…</option>
+            <option>Narrative Film</option><option>Documentary</option><option>Music Video</option>
+            <option>Commercial</option><option>Short Film</option><option>Other</option>
+          </select>
+          <small class="field__error" data-error-for="projectType"></small>
+        </div>
+        <div class="field field--full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project…"></textarea>
+          <small class="field__error" data-error-for="message"></small>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block magnetic" data-magnetic>Send message →</button>
+
+        <div class="form-success" id="formSuccess" aria-live="polite" hidden>
+          <div class="form-success__check" aria-hidden="true">
+            <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none"/><path fill="none" d="M14 27l7 7 16-16"/></svg>
+          </div>
+          <p>Message sent! I'll be in touch soon 🎬</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ FOOTER ============================================================ -->
+<footer class="footer" id="footer">
+  <span class="doodle doodle--star" style="--x:10%; --y:30%;" aria-hidden="true">✦</span>
+  <span class="doodle doodle--plus" style="--x:86%; --y:26%;" aria-hidden="true">+</span>
+  <div class="footer__cta">
+    <h2 class="footer__line reveal">Ready to tell <span class="hl hl--purple">your story?</span></h2>
+    <p class="footer__sub reveal">Let's create something cinematic together.</p>
+    <a href="mailto:ganesanbalaji4@gmail.com" class="btn btn--primary magnetic" data-magnetic>Start a project →</a>
+  </div>
+  <div class="footer__bottom">
+    <span>© <span id="year"></span> Balaji G</span>
+    <span>Made with 🎬 in Chennai</span>
+    <a href="#hero" class="footer__top">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- ============================================================ VIDEO MODAL ============================================================ -->
+<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+  <div class="modal__overlay" data-close-modal></div>
+  <div class="modal__box">
+    <button class="modal__close" id="modalClose" aria-label="Close video">✕</button>
+    <div class="modal__frame">
+      <iframe id="modalIframe" src="" title="Project video" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="modal__caption" id="modalCaption"></p>
+  </div>
+</div>
+
+<script src="js/darkmode.js" defer></script>
+<script src="js/animations.js" defer></script>
+<script src="js/main.js" defer></script>
