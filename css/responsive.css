@@ -23,6 +23,8 @@
 
   .contact__grid { grid-template-columns: 1fr; }
   .contact__info .section__title, .contact__info .section__kicker { text-align: center; }
+
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------- MOBILE (≤ 620px) ---------- */
@@ -34,6 +36,7 @@
   .works__grid,
   .testimonials__grid,
   .social__grid,
+  .gallery__grid,
   .contact__form { grid-template-columns: 1fr; }
 
   .hero__stats { gap: 1.5rem; }
