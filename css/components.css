@@ -160,7 +160,7 @@
 .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .chip { display: inline-flex; align-items: center; gap: 0.55rem; background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--c); border: 1.5px solid color-mix(in srgb, var(--c) 40%, transparent); padding: 0.45rem 1.1rem 0.45rem 0.5rem; border-radius: var(--pill); font-weight: 700; font-size: 0.95rem; transition: transform 0.25s var(--ease); }
 .chip:hover { transform: translateY(-4px) rotate(-2deg); }
-.chip__logo { width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0; display: block; }
+.chip__logo { width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0; display: block; object-fit: contain; }
 
 /* ---------- TESTIMONIALS ---------- */
 .testimonials__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
