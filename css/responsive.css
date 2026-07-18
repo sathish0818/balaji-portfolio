@@ -1,0 +1,60 @@
+/* ============================================================
+   responsive.css — Mobile / Tablet / Desktop breakpoints
+   Colorful theme
+============================================================ */
+
+/* ---------- TABLET (≤ 960px) ---------- */
+@media (max-width: 960px) {
+  .nav__links { display: none; }
+  .nav__pill { display: none; }
+  .nav__burger { display: flex; }
+
+  .hero__grid { grid-template-columns: 1fr; text-align: center; }
+  .hero__hi, .hero__lead { margin-inline: auto; }
+  .hero__cta, .hero__stats { justify-content: center; }
+  .hero__media { order: -1; }
+  .hero__photo-wrap { max-width: 360px; }
+
+  .about__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about__media { max-width: 380px; margin-inline: auto; }
+  .about__body { text-align: center; }
+  .about__body .section__title { text-align: center; }
+  .chips { justify-content: center; }
+
+  .contact__grid { grid-template-columns: 1fr; }
+  .contact__info .section__title, .contact__info .section__kicker { text-align: center; }
+}
+
+/* ---------- MOBILE (≤ 620px) ---------- */
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .nav { padding-left: 1rem; }
+
+  .services__grid,
+  .works__grid,
+  .testimonials__grid,
+  .social__grid,
+  .contact__form { grid-template-columns: 1fr; }
+
+  .hero__stats { gap: 1.5rem; }
+  .hero__cta .btn { width: 100%; }
+
+  .footer__bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
+
+  .theme-toggle { bottom: 1rem; right: 1rem; }
+
+  /* Trim some doodles on small screens to reduce clutter */
+  .doodle--arc, .doodle--zig { display: none; }
+}
+
+/* ---------- TINY (≤ 380px) ---------- */
+@media (max-width: 380px) {
+  .section { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .sticker--badge, .sticker--emoji { display: none; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track, .doodle, .loader__blob, .wave,
+  .sticker--play, .sticker--badge, .sticker--chip, .sticker--emoji { animation: none !important; }
+}
