@@ -199,6 +199,22 @@ body.is-loading { overflow: hidden; height: 100vh; }
 @keyframes clapPop { 0%, 84% { transform: translateX(-50%) scale(0); opacity: 0; } 91% { transform: translateX(-50%) scale(1.2); opacity: 1; } 100% { transform: translateX(-50%) scale(1); opacity: 1; } }
 @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
+/* Custom illustrated vehicles + editing desk */
+.ride { bottom: 22px; font-size: 0; }
+.ride svg { display: inline-block; width: clamp(160px, 48vw, 200px); height: auto; overflow: visible; }
+.v-wheel { fill: var(--text); }
+.v-hub { fill: var(--surface); }
+.wheel { transform-box: fill-box; transform-origin: center; animation: spin 0.5s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.wave rect { transform-box: fill-box; transform-origin: 50% 100%; animation: wave 0.7s var(--ease) infinite; }
+.wave rect:nth-child(2) { animation-delay: 0.1s; }
+.wave rect:nth-child(3) { animation-delay: 0.2s; }
+.wave rect:nth-child(4) { animation-delay: 0.3s; }
+.wave rect:nth-child(5) { animation-delay: 0.4s; }
+@keyframes wave { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1); } }
+.tl-playhead { transform-box: fill-box; animation: playhead 1.3s var(--ease) infinite alternate; }
+@keyframes playhead { from { transform: translateX(0); } to { transform: translateX(54px); } }
+
 /* Brand wordmark + tagline + bar */
 .loader__brand { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 7vw, 3.2rem); letter-spacing: -0.02em; background: linear-gradient(100deg, var(--c-purple), var(--c-pink), var(--c-teal), var(--c-purple)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite, riseIn 0.6s var(--ease) 3.4s both; }
 @keyframes shimmer { to { background-position: 300% 0; } }
