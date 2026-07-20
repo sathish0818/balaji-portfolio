@@ -187,11 +187,11 @@ body.is-loading { overflow: hidden; height: 100vh; }
 .ride { position: absolute; left: 0; width: 100%; bottom: 36px; text-align: center; font-size: clamp(2.6rem, 10vw, 3.4rem); line-height: 1; opacity: 0; will-change: transform, opacity; }
 .ride__v { display: inline-block; animation: bob 0.5s var(--ease) infinite; }
 @keyframes bob { 50% { transform: translateY(-6px); } }
-.ride--1 { animation: drive1 4.2s var(--ease) forwards; }
-.ride--2 { animation: drive2 4.2s var(--ease) forwards; }
-.ride--3 { animation: drive3 4.2s var(--ease) forwards; }
-.ride--4 { animation: land 4.2s var(--ease) forwards; }
-.clap { position: absolute; left: 50%; bottom: 92px; font-size: 1.9rem; transform: translateX(-50%) scale(0); opacity: 0; animation: clapPop 4.2s var(--ease) forwards; }
+.ride--1 { animation: drive1 2s var(--ease) forwards; }
+.ride--2 { animation: drive2 2s var(--ease) forwards; }
+.ride--3 { animation: drive3 2s var(--ease) forwards; }
+.ride--4 { animation: land 2s var(--ease) forwards; }
+.clap { position: absolute; left: 50%; bottom: 92px; font-size: 1.9rem; transform: translateX(-50%) scale(0); opacity: 0; animation: clapPop 2s var(--ease) forwards; }
 @keyframes drive1 { 0% { transform: translateX(200px); opacity: 0; } 5% { opacity: 1; } 9% { transform: translateX(0); } 18% { transform: translateX(0); opacity: 1; } 25% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }
 @keyframes drive2 { 0%, 25% { transform: translateX(200px); opacity: 0; } 30% { opacity: 1; } 34% { transform: translateX(0); } 43% { transform: translateX(0); opacity: 1; } 50% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }
 @keyframes drive3 { 0%, 50% { transform: translateX(200px); opacity: 0; } 55% { opacity: 1; } 59% { transform: translateX(0); } 68% { transform: translateX(0); opacity: 1; } 75% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }
