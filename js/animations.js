@@ -1,7 +1,7 @@
 /* ============================================================
-   animations.js — Loader, scroll reveal, magnetic buttons,
-   parallax, nav hide/show. Pure vanilla JS.
-   Respects prefers-reduced-motion.
+   animations.js — Loader, scroll reveal, custom cursor,
+   magnetic buttons, parallax, nav hide/show
+   Pure vanilla JS. Respects prefers-reduced-motion.
 ============================================================ */
 (function () {
   "use strict";
@@ -16,34 +16,33 @@
     if (!loaderEl) return;
 
     document.body.classList.add("is-loading");
-    var pct = 0;
+
+    // Story runs for a fixed duration so the journey (cycle -> bike -> car -> desk) plays out.
+    var DURATION = reduceMotion ? 300 : 4200;
+    var done = false;
+
+    function now() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
+    var start = now();
 
     function finish() {
+      if (done) return;
+      done = true;
       loaderEl.classList.add("is-done");
       document.body.classList.remove("is-loading");
-      document.body.classList.add("is-loaded");
+      document.body.classList.add("is-loaded"); // triggers hero text reveal
       window.setTimeout(function () { loaderEl.setAttribute("hidden", ""); }, 800);
     }
 
-    if (reduceMotion) {
-      if (progressEl) progressEl.style.width = "100%";
-      if (countEl) countEl.textContent = "100";
-      finish();
-      return;
+    function tick() {
+      var t = Math.min(1, (now() - start) / DURATION);
+      if (progressEl) progressEl.style.width = (t * 100) + "%";
+      if (t < 1) { requestAnimationFrame(tick); } else { finish(); }
     }
+    requestAnimationFrame(tick);
 
-    var timer = window.setInterval(function () {
-      pct += Math.floor(Math.random() * 12) + 4;
-      if (pct >= 100) { pct = 100; window.clearInterval(timer); }
-      if (progressEl) progressEl.style.width = pct + "%";
-      if (countEl) countEl.textContent = pct < 10 ? "0" + pct : String(pct);
-      if (pct === 100) window.setTimeout(finish, 350);
-    }, 130);
-
+    // Safety: never trap the user behind the loader
     window.addEventListener("load", function () {
-      window.setTimeout(function () {
-        if (!loaderEl.classList.contains("is-done")) { window.clearInterval(timer); finish(); }
-      }, 2500);
+      window.setTimeout(finish, DURATION + 1200);
     });
   })();
 
@@ -68,17 +67,46 @@
 
     els.forEach(function (el) { io.observe(el); });
 
+    // Expose so dynamically-injected cards can register themselves
     window.__observeReveal = function (el) {
       if (reduceMotion) { el.classList.add("is-visible"); return; }
       io.observe(el);
     };
   })();
 
-  /* ---------- 3. MAGNETIC BUTTONS ---------- */
+  /* ---------- 3. CUSTOM CURSOR (mouse-follow) ---------- */
+  (function cursor() {
+    var ring = document.getElementById("cursor");
+    var dot = document.getElementById("cursorDot");
+    if (!ring || !dot || reduceMotion || window.matchMedia("(hover: none)").matches) return;
+
+    var mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener("mousemove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
+    });
+
+    function loop() {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // Enlarge cursor over interactive elements
+    document.querySelectorAll("a, button, .work-card, .skill-card, [data-magnetic]").forEach(function (el) {
+      el.addEventListener("mouseenter", function () { ring.classList.add("is-hover"); });
+      el.addEventListener("mouseleave", function () { ring.classList.remove("is-hover"); });
+    });
+  })();
+
+  /* ---------- 4. MAGNETIC BUTTONS ---------- */
   (function magnetic() {
     if (reduceMotion || window.matchMedia("(hover: none)").matches) return;
     document.querySelectorAll("[data-magnetic]").forEach(function (el) {
-      var strength = 0.3;
+      var strength = 0.35;
       el.addEventListener("mousemove", function (e) {
         var r = el.getBoundingClientRect();
         var x = e.clientX - r.left - r.width / 2;
@@ -89,7 +117,7 @@
     });
   })();
 
-  /* ---------- 4. PARALLAX ---------- */
+  /* ---------- 5. PARALLAX ---------- */
   (function parallax() {
     if (reduceMotion) return;
     var layers = document.querySelectorAll("[data-parallax]");
@@ -109,7 +137,7 @@
     }, { passive: true });
   })();
 
-  /* ---------- 5. NAV hide-on-scroll-down ---------- */
+  /* ---------- 6. NAV hide-on-scroll-down ---------- */
   (function navScroll() {
     var nav = document.getElementById("nav");
     if (!nav) return;
