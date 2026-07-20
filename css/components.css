@@ -221,6 +221,20 @@
 .contact__list a, .contact__list p { font-size: 1.1rem; font-weight: 600; }
 .contact__list a:hover { color: var(--primary); }
 
+/* Enhanced contact info */
+.contact__badge { display: inline-flex; align-items: center; gap: 0.5rem; background: color-mix(in srgb, var(--c-green) 15%, transparent); color: var(--c-green); border: 1.5px solid color-mix(in srgb, var(--c-green) 40%, transparent); padding: 0.4rem 0.9rem; border-radius: var(--pill); font-weight: 700; font-size: 0.82rem; margin-bottom: 1rem; }
+.contact__badge i { width: 9px; height: 9px; border-radius: 50%; background: var(--c-green); animation: pulse 2s var(--ease) infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-green) 55%, transparent); } 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.contact__intro { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 46ch; }
+.contact__cards { display: flex; flex-direction: column; gap: 0.8rem; }
+.contact__card { display: flex; align-items: center; gap: 0.9rem; padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: var(--r); background: var(--bg); transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease); }
+.contact__card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--c); }
+.contact__card--static, .contact__card--static:hover { transform: none; box-shadow: none; border-color: var(--border); cursor: default; }
+.contact__card-icon { width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; font-size: 1.2rem; border-radius: 12px; background: color-mix(in srgb, var(--c) 16%, transparent); }
+.contact__card-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.contact__card-text small { color: var(--muted); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.contact__card-text strong { font-size: 1.02rem; font-weight: 700; overflow-wrap: anywhere; }
+
 .contact__form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .field { display: flex; flex-direction: column; gap: 0.4rem; }
 .field--full { grid-column: 1 / -1; }
