@@ -55,16 +55,27 @@
 
 <!-- ============================================================ LOADER ============================================================ -->
 <div class="loader" id="loader" aria-hidden="true">
-  <div class="leader">
-    <div class="leader__sweep"></div>
-    <span class="leader__cross leader__cross--v"></span>
-    <span class="leader__cross leader__cross--h"></span>
-    <div class="leader__ring"></div>
-    <div class="leader__count"><span>3</span><span>2</span><span>1</span></div>
+  <div class="loader__aura"></div>
+  <span class="loader__doodle" style="--x:14%; --y:22%; color:var(--c-yellow);">✦</span>
+  <span class="loader__doodle" style="--x:82%; --y:24%; color:var(--c-pink); animation-delay:-2s;">+</span>
+  <span class="loader__doodle" style="--x:18%; --y:72%; color:var(--c-teal); animation-delay:-1s;">〰</span>
+  <span class="loader__doodle" style="--x:84%; --y:70%; color:var(--c-blue); animation-delay:-3s;">◆</span>
+
+  <div class="loader__stage">
+    <div class="reel">
+      <div class="reel__sprockets"></div>
+      <div class="reel__disc">
+        <div class="reel__sweep"></div>
+        <span class="reel__cross reel__cross--v"></span>
+        <span class="reel__cross reel__cross--h"></span>
+        <div class="reel__count"><span>3</span><span>2</span><span>1</span></div>
+      </div>
+      <div class="reel__ring"></div>
+    </div>
+    <h2 class="loader__brand">BALAJI G</h2>
+    <p class="loader__tag">Cutting stories that move people…</p>
+    <div class="loader__bar"><span id="loaderProgress"></span></div>
   </div>
-  <span class="loader__text">Balaji<span class="dot">.</span>g</span>
-  <p class="loader__tag">Cutting stories that move people…</p>
-  <div class="loader__bar"><span id="loaderProgress"></span></div>
 </div>
 
 <!-- ============================================================ THEME TOGGLE ============================================================ -->
