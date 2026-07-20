@@ -212,7 +212,7 @@
 .social-card__arrow { position: absolute; top: 1.4rem; right: 1.6rem; font-size: 1.5rem; }
 
 /* ---------- CONTACT ---------- */
-.contact__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: clamp(1.75rem, 4vw, 3rem); box-shadow: var(--shadow); }
+.contact__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; background: color-mix(in srgb, var(--surface) 70%, transparent); border: 1px solid var(--border); border-radius: var(--r-lg); padding: clamp(1.75rem, 4vw, 3rem); box-shadow: 0 12px 34px -26px rgba(124,58,237,0.28); backdrop-filter: blur(4px); }
 .contact__info .section__title, .contact__info .section__kicker { text-align: left; }
 .contact__info .section__title { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 0.5rem 0 1.5rem; }
 .contact__list li { border-top: 1px solid var(--border); padding: 1rem 0; }
@@ -227,8 +227,8 @@
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-green) 55%, transparent); } 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 .contact__intro { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 46ch; }
 .contact__cards { display: flex; flex-direction: column; gap: 0.8rem; }
-.contact__card { display: flex; align-items: center; gap: 0.9rem; padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: var(--r); background: var(--bg); transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease); }
-.contact__card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--c); }
+.contact__card { display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 1rem; border: 1px solid color-mix(in srgb, var(--c) 20%, var(--border)); border-radius: var(--r); background: color-mix(in srgb, var(--c) 7%, var(--surface)); transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease); }
+.contact__card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -18px color-mix(in srgb, var(--c) 75%, transparent); border-color: var(--c); }
 .contact__card--static, .contact__card--static:hover { transform: none; box-shadow: none; border-color: var(--border); cursor: default; }
 .contact__card-icon { width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; font-size: 1.2rem; border-radius: 12px; background: color-mix(in srgb, var(--c) 16%, transparent); }
 .contact__card-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
@@ -239,9 +239,11 @@
 .field { display: flex; flex-direction: column; gap: 0.4rem; }
 .field--full { grid-column: 1 / -1; }
 .field label { font-weight: 700; font-size: 0.85rem; }
-.field input, .field select, .field textarea { background: var(--bg); color: var(--text); border: 2px solid var(--border); border-radius: var(--r-sm); padding: 0.8rem 1rem; resize: vertical; transition: border-color 0.2s var(--ease); }
+.field input, .field select, .field textarea { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.85rem 1rem; resize: vertical; transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
 .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.7; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent); }
+/* Custom dropdown: hide native arrow, add roomy padding + chevron */
+.field select { appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer; padding-right: 2.6rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A82A6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
 .field.is-invalid input, .field.is-invalid select, .field.is-invalid textarea { border-color: var(--c-coral); }
 .field__error { color: var(--c-coral); font-size: 0.78rem; font-weight: 700; min-height: 1em; }
 .contact__form .btn--block { grid-column: 1 / -1; }
