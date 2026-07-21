@@ -159,9 +159,10 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .loader {
   position: fixed; inset: 0; z-index: 10000; overflow: hidden; background: var(--bg);
   display: grid; place-items: center;
-  transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease), transform 0.7s var(--ease);
+  clip-path: circle(150% at 50% 42%);
+  transition: clip-path 0.75s var(--ease), opacity 0.5s var(--ease) 0.2s, visibility 0.8s var(--ease);
 }
-.loader.is-done { opacity: 0; visibility: hidden; transform: scale(1.08); }
+.loader.is-done { clip-path: circle(0% at 50% 42%); opacity: 0; visibility: hidden; }
 body.is-loading { overflow: hidden; height: 100vh; }
 
 /* Aurora gradient backdrop */
@@ -180,6 +181,14 @@ body.is-loading { overflow: hidden; height: 100vh; }
 /* Stage */
 .loader__stage { position: relative; z-index: 2; display: grid; place-items: center; gap: 1.3rem; text-align: center; padding: 1rem; }
 
+/* Twinkling sparkles (a little magic) */
+.spark { position: absolute; width: 16px; height: 16px; opacity: 0; transform: scale(0); z-index: 2; background: var(--c-yellow); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: twinkle 1.9s var(--ease) infinite; }
+.spark--a { left: 20%; top: 28%; }
+.spark--b { left: 76%; top: 32%; background: var(--c-pink); animation-delay: 0.5s; }
+.spark--c { left: 66%; top: 68%; background: var(--c-teal); animation-delay: 1s; }
+.spark--d { left: 26%; top: 66%; background: var(--c-blue); width: 12px; height: 12px; animation-delay: 1.4s; }
+@keyframes twinkle { 0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; } 50% { transform: scale(1) rotate(20deg); opacity: 1; } }
+
 /* Journey scene: cycle -> bike -> car -> editing desk */
 .journey { position: relative; width: min(360px, 82vw); height: 130px; }
 .journey__road { position: absolute; left: 0; right: 0; bottom: 30px; height: 4px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 16px, transparent 16px 32px); opacity: 0.4; animation: roadmove 0.45s linear infinite; }
@@ -187,11 +196,11 @@ body.is-loading { overflow: hidden; height: 100vh; }
 .ride { position: absolute; left: 0; width: 100%; bottom: 36px; text-align: center; font-size: clamp(2.6rem, 10vw, 3.4rem); line-height: 1; opacity: 0; will-change: transform, opacity; }
 .ride__v { display: inline-block; animation: bob 0.5s var(--ease) infinite; }
 @keyframes bob { 50% { transform: translateY(-6px); } }
-.ride--1 { animation: drive1 2s var(--ease) forwards; }
-.ride--2 { animation: drive2 2s var(--ease) forwards; }
-.ride--3 { animation: drive3 2s var(--ease) forwards; }
-.ride--4 { animation: land 2s var(--ease) forwards; }
-.clap { position: absolute; left: 50%; bottom: 92px; font-size: 1.9rem; transform: translateX(-50%) scale(0); opacity: 0; animation: clapPop 2s var(--ease) forwards; }
+.ride--1 { animation: drive1 3s var(--ease) forwards; }
+.ride--2 { animation: drive2 3s var(--ease) forwards; }
+.ride--3 { animation: drive3 3s var(--ease) forwards; }
+.ride--4 { animation: land 3s var(--ease) forwards; }
+.clap { position: absolute; left: 50%; bottom: 92px; font-size: 1.9rem; transform: translateX(-50%) scale(0); opacity: 0; animation: clapPop 3s var(--ease) forwards; }
 @keyframes drive1 { 0% { transform: translateX(200px); opacity: 0; } 5% { opacity: 1; } 9% { transform: translateX(0); } 18% { transform: translateX(0); opacity: 1; } 25% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }
 @keyframes drive2 { 0%, 25% { transform: translateX(200px); opacity: 0; } 30% { opacity: 1; } 34% { transform: translateX(0); } 43% { transform: translateX(0); opacity: 1; } 50% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }
 @keyframes drive3 { 0%, 50% { transform: translateX(200px); opacity: 0; } 55% { opacity: 1; } 59% { transform: translateX(0); } 68% { transform: translateX(0); opacity: 1; } 75% { transform: translateX(-230px); opacity: 0; } 100% { transform: translateX(-230px); opacity: 0; } }

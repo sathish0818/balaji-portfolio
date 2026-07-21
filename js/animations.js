@@ -18,7 +18,7 @@
     document.body.classList.add("is-loading");
 
     // Story runs for a fixed duration so the journey (cycle -> bike -> car -> desk) plays out.
-    var DURATION = reduceMotion ? 300 : 2000;
+    var DURATION = reduceMotion ? 300 : 3000;
     var done = false;
 
     function now() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
