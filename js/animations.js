@@ -30,7 +30,7 @@
       loaderEl.classList.add("is-done");
       document.body.classList.remove("is-loading");
       document.body.classList.add("is-loaded"); // triggers hero text reveal
-      window.setTimeout(function () { loaderEl.setAttribute("hidden", ""); }, 800);
+      window.setTimeout(function () { loaderEl.setAttribute("hidden", ""); }, 950);
     }
 
     function tick() {

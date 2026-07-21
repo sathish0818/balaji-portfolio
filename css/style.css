@@ -157,16 +157,20 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 
 /* ---------- LOADER (story journey intro) ---------- */
 .loader {
-  position: fixed; inset: 0; z-index: 10000; overflow: hidden; background: var(--bg);
+  position: fixed; inset: 0; z-index: 10000; overflow: hidden; background: transparent;
   display: grid; place-items: center;
-  clip-path: circle(150% at 50% 42%);
-  transition: clip-path 0.75s var(--ease), opacity 0.5s var(--ease) 0.2s, visibility 0.8s var(--ease);
 }
-.loader.is-done { clip-path: circle(0% at 50% 42%); opacity: 0; visibility: hidden; }
+/* Two background panels that split apart like a film cut on exit */
+.loader__panel { position: absolute; left: 0; width: 100%; height: calc(50% + 1px); background: var(--bg); z-index: 1; transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+.loader__panel--top { top: 0; }
+.loader__panel--bottom { bottom: 0; }
+.loader.is-done .loader__panel--top { transform: translateY(-101%); }
+.loader.is-done .loader__panel--bottom { transform: translateY(101%); }
+.loader.is-done .loader__aura, .loader.is-done .loader__stage { opacity: 0; transition: opacity 0.35s var(--ease); }
 body.is-loading { overflow: hidden; height: 100vh; }
 
 /* Aurora gradient backdrop */
-.loader__aura { position: absolute; inset: 0; pointer-events: none; }
+.loader__aura { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .loader__aura::before, .loader__aura::after {
   content: ""; position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(90px); opacity: 0.45;
 }
