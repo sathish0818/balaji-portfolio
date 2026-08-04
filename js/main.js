@@ -15,15 +15,18 @@
      `youtube` = the YouTube video ID (the part after ?v=).
      `thumb`   = path to a thumbnail image in assets/images/thumbnails/
      ============================================================ */
+  // Covers are pulled straight from each YouTube video (maxres → hq fallback),
+  // so the artwork always matches the link. `thumb` is the local placeholder used
+  // only if YouTube is unreachable.
   var WORKS = [
-    { title: "Mookuthi Amman 2", role: "Assistant Editor", year: "2026", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-1.svg" },
-    { title: "Aranmanai 4",      role: "Assistant Editor", year: "2024", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-2.svg" },
-    { title: "Commercial Project", role: "Editor",         year: "2024", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-3.svg" },
-    { title: "Documentary Edit", role: "Editor",           year: "2023", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-4.svg" },
-    { title: "Music Video",      role: "Editor",           year: "2023", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-5.svg" },
-    { title: "Short Film",       role: "Editor",           year: "2022", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-6.svg" },
-    { title: "Brand Campaign",   role: "Editor",           year: "2022", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-7.svg" },
-    { title: "Corporate Film",   role: "Editor",           year: "2021", youtube: "dQw4w9WgXcQ", thumb: "assets/images/thumbnails/thumb-8.svg" }
+    { title: "Olti Vudu",              role: "Music Video Editor",     year: "2024", youtube: "bXeETRsEP3I", thumb: "assets/images/thumbnails/thumb-1.svg" },
+    { title: "170CM — Live Session",   role: "Live Performance Editor", year: "2023", youtube: "eItDgBaHmPI", thumb: "assets/images/thumbnails/thumb-2.svg" },
+    { title: "Parotta Varatta",        role: "Music Video Editor",     year: "2023", youtube: "TYO5BFj12Aw", thumb: "assets/images/thumbnails/thumb-3.svg" },
+    { title: "Hey Siri",               role: "Music Video Editor",     year: "2023", youtube: "8Mks9vU2aGA", thumb: "assets/images/thumbnails/thumb-4.svg" },
+    { title: "Yedhudhaan Inga Sandhosam", role: "Music Video Editor",  year: "2023", youtube: "hREr2C-W-TQ", thumb: "assets/images/thumbnails/thumb-5.svg" },
+    { title: "Pozhudhugal",            role: "Music Video Editor",     year: "2023", youtube: "cYHuNU8nEPw", thumb: "assets/images/thumbnails/thumb-6.svg" },
+    { title: "Natpukaage — NOVP Tribute", role: "Music Video Editor",  year: "2024", youtube: "0ztP0IZ_8Kg", thumb: "assets/images/thumbnails/thumb-7.svg" },
+    { title: "Thangamae Thalli Pogathadi", role: "Music Video Editor", year: "2023", youtube: "NGDrSuXJpu8", thumb: "assets/images/thumbnails/thumb-8.svg" }
   ];
 
   /* ============================================================
@@ -63,9 +66,15 @@
       card.dataset.youtube = w.youtube;
       card.dataset.caption = w.title + " — " + w.role + " · " + w.year;
 
+      // Cover priority: YouTube maxres → YouTube hq → local SVG placeholder
+      var ytMax = "https://i.ytimg.com/vi/" + w.youtube + "/maxresdefault.jpg";
+      var ytHq  = "https://i.ytimg.com/vi/" + w.youtube + "/hqdefault.jpg";
+      var onErr = "if(!this.dataset.f){this.dataset.f=1;this.src='" + ytHq + "';}" +
+                  "else if(this.dataset.f==1){this.dataset.f=2;this.src='" + w.thumb + "';}";
+
       card.innerHTML =
         '<div class="work-card__thumb">' +
-          '<img src="' + w.thumb + '" alt="' + w.title + ' thumbnail" loading="lazy" decoding="async" width="480" height="300" />' +
+          '<img src="' + ytMax + '" alt="' + w.title + ' — cover" loading="lazy" decoding="async" width="480" height="300" onerror="' + onErr + '" />' +
           '<span class="work-card__play"><span aria-hidden="true">▶</span></span>' +
         '</div>' +
         '<div class="work-card__meta">' +
