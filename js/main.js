@@ -1,9 +1,8 @@
 /* ============================================================
    main.js — Content data + interactivity
-   • WORKS + TESTIMONIALS data arrays (edit these!)
-   • Renders Works & Testimonial cards
+   • WORKS + VOICES data arrays (edit these!)
+   • Renders Works & Collaborator cards
    • Video modal (YouTube iframe)
-   • Custom audio player
    • Contact form validation + success animation
    • Mobile menu, smooth scroll, footer year
 ============================================================ */
@@ -31,18 +30,19 @@
   ];
 
   /* ============================================================
-     ⭐ TESTIMONIALS — EDIT THIS ARRAY
-     `audio` = path to a voice-note in assets/audio/ (.mp3/.wav/.m4a)
-     `avatar`= profile image in assets/images/
-     Drop your own audio files into assets/audio/ and update paths.
+     ⭐ VOICES / COLLABORATORS — EDIT THIS ARRAY
+     `img` = profile photo in assets/images/voices/ (save each person's
+             Instagram picture there; a colored-initials avatar shows
+             automatically until the file exists).
+     `hex` = fallback avatar colour. `c` = accent CSS var for the card.
      ============================================================ */
-  var TESTIMONIALS = [
-    { name: "Ravi Kumar",   role: "Director", quote: "Balaji finds the emotional beat every single time. A rare instinct.", audio: "assets/audio/voice-1.mp3", avatar: "assets/images/thumbnails/avatar-1.svg" },
-    { name: "Meena S.",     role: "Producer", quote: "Deadlines met, story elevated. He is the calmest room in post.", audio: "assets/audio/voice-2.mp3", avatar: "assets/images/thumbnails/avatar-2.svg" },
-    { name: "Arjun Dev",    role: "Cinematographer", quote: "My footage always looks better after his cut. Pure craft.", audio: "assets/audio/voice-3.mp3", avatar: "assets/images/thumbnails/avatar-3.svg" },
-    { name: "Priya R.",     role: "Music Director", quote: "His sense of rhythm is musical. The montages sing.", audio: "assets/audio/voice-4.mp3", avatar: "assets/images/thumbnails/avatar-4.svg" },
-    { name: "Karthik V.",   role: "Brand Manager", quote: "Turned a rough brief into a campaign that actually converted.", audio: "assets/audio/voice-5.mp3", avatar: "assets/images/thumbnails/avatar-5.svg" },
-    { name: "Sana Iqbal",   role: "Documentary Lead", quote: "He respects the truth of the footage. Honest, powerful edits.", audio: "assets/audio/voice-6.mp3", avatar: "assets/images/thumbnails/avatar-6.svg" }
+  var VOICES = [
+    { name: "Venkat Balamurali",  role: "Reels & Music Videos", handle: "@venkat_balamurali",     url: "https://www.instagram.com/venkat_balamurali",     img: "assets/images/voices/venkat.jpg",      blurb: "Teamed up on a run of Instagram reels and music videos — fast turnarounds, sharp cuts, always on the beat.", c: "var(--c-pink)",   hex: "#EC4899" },
+    { name: "Subramanian Sethu",  role: "Instagram Videos",     handle: "@subramanian__sethu",     url: "https://www.instagram.com/subramanian__sethu",     img: "assets/images/voices/subramanian.jpg", blurb: "Collaborated on a series of Instagram videos — Balaji shaped the pacing and made every frame land.", c: "var(--c-teal)",   hex: "#14B8A6" },
+    { name: "Arunachalam",        role: "Instagram Videos",     handle: "@arunachaleswaran.pa",    url: "https://www.instagram.com/arunachaleswaran.pa",    img: "assets/images/voices/arunachalam.jpg", blurb: "Worked together on Instagram videos — clean, snappy edits that kept the audience watching.", c: "var(--c-yellow)", hex: "#F5B912" },
+    { name: "Oliver Nathaneal",   role: "Short Films",          handle: "@oliver_nathaneal",       url: "https://www.instagram.com/oliver_nathaneal",       img: "assets/images/voices/oliver.jpg",      blurb: "Partnered on short films — Balaji brought structure and emotion to the edit, scene after scene.", c: "var(--c-purple)", hex: "#7C3AED" },
+    { name: "Blueleaf Projects",  role: "Reels",                handle: "@blueleafprojectsindia",  url: "https://www.instagram.com/blueleafprojectsindia",  img: "assets/images/voices/blueleaf.jpg",    blurb: "Behind a batch of scroll-stopping reels — Balaji's rhythm and timing did the heavy lifting.", c: "var(--c-blue)",   hex: "#3B82F6" },
+    { name: "DAC Developers",     role: "Reel Edits",           handle: "@dacdeveloperspvtltd",    url: "https://www.instagram.com/dacdeveloperspvtltd",    img: "assets/images/voices/dac.jpg",         blurb: "Cut a set of brand reels — crisp edits that kept the message clear and the scroll stopping.", c: "var(--c-coral)",  hex: "#FB7185" }
   ];
 
   /* small helper */
@@ -127,94 +127,44 @@
   }
 
   /* ============================================================
-     RENDER TESTIMONIALS + CUSTOM AUDIO PLAYER
+     RENDER VOICES / COLLABORATORS (name, blurb, profile link, photo)
      ============================================================ */
-  (function renderTestimonials() {
+  (function renderVoices() {
     var grid = document.getElementById("testimonialsGrid");
     if (!grid) return;
 
-    TESTIMONIALS.forEach(function (t) {
+    function initials(name) {
+      var p = name.trim().split(/\s+/);
+      return (p.length > 1 ? p[0][0] + p[1][0] : name.slice(0, 2)).toUpperCase();
+    }
+    // Colored-initials avatar used until a real photo is dropped in assets/images/voices/
+    function fallbackAvatar(name, hex) {
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">' +
+        '<rect width="120" height="120" rx="60" fill="' + hex + '"/>' +
+        '<text x="60" y="76" font-family="Syne, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff" text-anchor="middle">' + initials(name) + '</text></svg>';
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+    }
+
+    VOICES.forEach(function (v) {
       var card = el("article", "testimonial reveal");
+      card.style.setProperty("--c", v.c);
       card.innerHTML =
         '<div class="testimonial__head">' +
-          '<img class="testimonial__avatar" src="' + t.avatar + '" alt="Photo of ' + t.name + '" loading="lazy" width="54" height="54" />' +
-          '<div><p class="testimonial__name">' + t.name + '</p><p class="testimonial__role">' + t.role + '</p></div>' +
+          '<img class="testimonial__avatar" src="' + v.img + '" alt="' + v.name + '" loading="lazy" width="54" height="54" />' +
+          '<div><p class="testimonial__name">' + v.name + '</p><p class="testimonial__role">' + v.role + '</p></div>' +
         '</div>' +
-        '<div class="player">' +
-          '<button class="player__btn" type="button" aria-label="Play voice note from ' + t.name + '">▶</button>' +
-          '<div class="player__bar" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="player__fill"></span></div>' +
-          '<span class="player__time">0:00 / 0:00</span>' +
-          '<audio preload="none" src="' + t.audio + '"></audio>' +
-        '</div>' +
-        '<p class="testimonial__quote">' + t.quote + '</p>';
+        '<p class="testimonial__blurb" style="font-size:1rem;color:var(--text)">' + v.blurb + '</p>' +
+        '<a class="testimonial__link" href="' + v.url + '" target="_blank" rel="noopener noreferrer" ' +
+          'style="margin-top:auto;display:inline-flex;align-items:center;gap:0.35rem;font-weight:700;font-size:0.9rem;color:var(--c)">' +
+          v.handle + ' <span aria-hidden="true">↗</span></a>';
+
+      var img = card.querySelector(".testimonial__avatar");
+      img.addEventListener("error", function () { this.onerror = null; this.src = fallbackAvatar(v.name, v.hex); });
 
       grid.appendChild(card);
       if (window.__observeReveal) window.__observeReveal(card);
-      wirePlayer(card);
     });
   })();
-
-  /**
-   * Custom audio player logic for one testimonial card.
-   * Handles play/pause, progress fill, seek, time display,
-   * and gracefully disables itself if the audio file is missing.
-   */
-  function wirePlayer(card) {
-    var audio = card.querySelector("audio");
-    var btn = card.querySelector(".player__btn");
-    var bar = card.querySelector(".player__bar");
-    var fill = card.querySelector(".player__fill");
-    var time = card.querySelector(".player__time");
-    if (!audio || !btn) return;
-
-    function fmt(s) {
-      if (!isFinite(s) || isNaN(s)) s = 0;
-      var m = Math.floor(s / 60);
-      var sec = Math.floor(s % 60);
-      return m + ":" + (sec < 10 ? "0" + sec : sec);
-    }
-    function render() {
-      var dur = audio.duration || 0;
-      var pct = dur ? (audio.currentTime / dur) * 100 : 0;
-      fill.style.width = pct + "%";
-      bar.setAttribute("aria-valuenow", String(Math.round(pct)));
-      time.textContent = fmt(audio.currentTime) + " / " + fmt(dur);
-    }
-
-    btn.addEventListener("click", function () {
-      // Pause every other player first (single-play behaviour)
-      document.querySelectorAll(".testimonial audio").forEach(function (a) {
-        if (a !== audio) { a.pause(); }
-      });
-      if (audio.paused) {
-        var p = audio.play();
-        if (p && p.catch) p.catch(function () {
-          time.textContent = "audio unavailable";
-        });
-      } else {
-        audio.pause();
-      }
-    });
-
-    audio.addEventListener("play", function () { btn.textContent = "❚❚"; });
-    audio.addEventListener("pause", function () { btn.textContent = "▶"; });
-    audio.addEventListener("ended", function () { btn.textContent = "▶"; fill.style.width = "0%"; });
-    audio.addEventListener("timeupdate", render);
-    audio.addEventListener("loadedmetadata", render);
-    audio.addEventListener("error", function () { time.textContent = "add audio file"; btn.disabled = true; btn.style.opacity = "0.5"; });
-
-    function seek(clientX) {
-      var r = bar.getBoundingClientRect();
-      var ratio = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
-      if (audio.duration) audio.currentTime = ratio * audio.duration;
-    }
-    bar.addEventListener("click", function (e) { seek(e.clientX); });
-    bar.addEventListener("keydown", function (e) {
-      if (!audio.duration) return;
-      if (e.key === "ArrowRight") { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); e.preventDefault(); }
-      if (e.key === "ArrowLeft")  { audio.currentTime = Math.max(0, audio.currentTime - 5); e.preventDefault(); }
-    });
-  }
 
   /* ============================================================
      CONTACT FORM — validation + success animation (no backend)
