@@ -26,7 +26,8 @@
     { title: "Yedhudhaan Inga Sandhosam", role: "Music Video Editor",  year: "2023", youtube: "hREr2C-W-TQ", thumb: "assets/images/thumbnails/thumb-5.svg" },
     { title: "Pozhudhugal",            role: "Music Video Editor",     year: "2023", youtube: "cYHuNU8nEPw", thumb: "assets/images/thumbnails/thumb-6.svg" },
     { title: "Natpukaage — NOVP Tribute", role: "Music Video Editor",  year: "2024", youtube: "0ztP0IZ_8Kg", thumb: "assets/images/thumbnails/thumb-7.svg" },
-    { title: "Thangamae Thalli Pogathadi", role: "Music Video Editor", year: "2023", youtube: "NGDrSuXJpu8", thumb: "assets/images/thumbnails/thumb-8.svg" }
+    { title: "Thangamae Thalli Pogathadi", role: "Music Video Editor", year: "2023", youtube: "NGDrSuXJpu8", thumb: "assets/images/thumbnails/thumb-8.svg" },
+    { title: "Rock On Harris 2.0 — Teaser", role: "Promo / Teaser Editor", year: "2023", youtube: "WOQV20cZxb0", thumb: "assets/images/thumbnails/thumb-1.svg" }
   ];
 
   /* ============================================================
