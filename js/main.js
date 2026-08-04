@@ -63,9 +63,9 @@
     WORKS.forEach(function (w, i) {
       var card = el("button", "work-card reveal");
       card.setAttribute("role", "listitem");
-      card.setAttribute("aria-label", "Play " + w.title + ", " + w.role + ", " + w.year);
+      card.setAttribute("aria-label", "Play " + w.title + ", " + w.role);
       card.dataset.youtube = w.youtube;
-      card.dataset.caption = w.title + " — " + w.role + " · " + w.year;
+      card.dataset.caption = w.title + " — " + w.role;
 
       // Cover priority: YouTube maxres → YouTube hq → local SVG placeholder
       var ytMax = "https://i.ytimg.com/vi/" + w.youtube + "/maxresdefault.jpg";
@@ -80,7 +80,7 @@
         '</div>' +
         '<div class="work-card__meta">' +
           '<h3 class="work-card__title">' + w.title + '</h3>' +
-          '<div class="work-card__tags"><span>' + w.role + '</span><span class="work-card__year">' + w.year + '</span></div>' +
+          '<div class="work-card__tags"><span>' + w.role + '</span></div>' +
         '</div>';
 
       card.addEventListener("click", function () { openModal(w.youtube, card.dataset.caption); });
