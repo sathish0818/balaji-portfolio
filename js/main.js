@@ -24,7 +24,7 @@
     { title: "Hey Siri",               role: "Music Video Editor",     year: "2023", youtube: "8Mks9vU2aGA", thumb: "assets/images/thumbnails/thumb-4.svg" },
     { title: "Yedhudhaan Inga Sandhosam", role: "Music Video Editor",  year: "2023", youtube: "hREr2C-W-TQ", thumb: "assets/images/thumbnails/thumb-5.svg" },
     { title: "Pozhudhugal",            role: "Music Video Editor",     year: "2023", youtube: "cYHuNU8nEPw", thumb: "assets/images/thumbnails/thumb-6.svg" },
-    { title: "Natpukaage (NOVP Tribute)", role: "Music Video Editor",  year: "2024", youtube: "0ztP0IZ_8Kg", thumb: "assets/images/thumbnails/thumb-7.svg" },
+    { title: "Cinderella (Short Film)", role: "Short Film Editor",     year: "2024", youtube: "ZmU7h7escI0", thumb: "assets/images/thumbnails/thumb-7.svg" },
     { title: "Thangamae Thalli Pogathadi", role: "Music Video Editor", year: "2023", youtube: "NGDrSuXJpu8", thumb: "assets/images/thumbnails/thumb-8.svg" },
     { title: "Rock On Harris 2.0 (Teaser)", role: "Promo / Teaser Editor", year: "2023", youtube: "WOQV20cZxb0", thumb: "assets/images/thumbnails/thumb-1.svg" }
   ];
@@ -41,7 +41,7 @@
     { name: "Subramanian Sethu",  role: "Instagram Videos",     handle: "@subramanian__sethu",     url: "https://www.instagram.com/subramanian__sethu",     img: "assets/images/voices/subramanian.jpg", blurb: "Collaborated on a series of Instagram videos. Balaji shaped the pacing and made every frame land.", c: "var(--c-teal)",   hex: "#14B8A6" },
     { name: "Arunachalam",        role: "Instagram Videos",     handle: "@arunachaleswaran.pa",    url: "https://www.instagram.com/arunachaleswaran.pa",    img: "assets/images/voices/arunachalam.jpg", blurb: "Worked together on Instagram videos. Clean, snappy edits that kept the audience watching.", c: "var(--c-yellow)", hex: "#F5B912" },
     { name: "Oliver Nathaneal",   role: "Short Films",          handle: "@oliver_nathaneal",       url: "https://www.instagram.com/oliver_nathaneal",       img: "assets/images/voices/oliver.jpg",      blurb: "Partnered on short films. Balaji brought structure and emotion to the edit, scene after scene.", c: "var(--c-purple)", hex: "#7C3AED" },
-    { name: "Blueleaf Projects",  role: "Reels",                handle: "@blueleafprojectsindia",  url: "https://www.instagram.com/blueleafprojectsindia",  img: "assets/images/voices/blueleaf.jpg",    blurb: "Behind a batch of scroll-stopping reels. Balaji's rhythm and timing did the heavy lifting.", c: "var(--c-blue)",   hex: "#3B82F6" },
+    { name: "Jagabar",            role: "Reels",                handle: "@jagabar_jakirathai",     url: "https://www.instagram.com/jagabar_jakirathai",     img: "assets/images/voices/jagabar.jpg",     blurb: "Cut a run of reels together. Punchy pacing that keeps thumbs from scrolling.", c: "var(--c-blue)",   hex: "#3B82F6" },
     { name: "DAC Developers",     role: "Reel Edits",           handle: "@dacdeveloperspvtltd",    url: "https://www.instagram.com/dacdeveloperspvtltd",    img: "assets/images/voices/dac.jpg",         blurb: "Cut a set of brand reels. Crisp edits that kept the message clear and the scroll stopping.", c: "var(--c-coral)",  hex: "#FB7185" }
   ];
 
