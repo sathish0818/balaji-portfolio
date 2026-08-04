@@ -67,10 +67,10 @@
       card.dataset.youtube = w.youtube;
       card.dataset.caption = w.title + ", " + w.role;
 
-      // Cover priority: YouTube maxres → YouTube hq → local SVG placeholder
+      // Cover priority: YouTube maxres → mqdefault (clean 16:9, used when maxres is missing) → local SVG placeholder
       var ytMax = "https://i.ytimg.com/vi/" + w.youtube + "/maxresdefault.jpg";
-      var ytHq  = "https://i.ytimg.com/vi/" + w.youtube + "/hqdefault.jpg";
-      var onErr = "if(!this.dataset.f){this.dataset.f=1;this.src='" + ytHq + "';}" +
+      var ytMq  = "https://i.ytimg.com/vi/" + w.youtube + "/mqdefault.jpg";
+      var onErr = "if(!this.dataset.f){this.dataset.f=1;this.src='" + ytMq + "';}" +
                   "else if(this.dataset.f==1){this.dataset.f=2;this.src='" + w.thumb + "';}";
 
       card.innerHTML =
