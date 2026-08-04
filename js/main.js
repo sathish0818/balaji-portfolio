@@ -67,21 +67,36 @@
       card.dataset.youtube = w.youtube;
       card.dataset.caption = w.title + ", " + w.role;
 
-      // Cover priority: YouTube maxres → mqdefault (clean 16:9, used when maxres is missing) → local SVG placeholder
-      var ytMax = "https://i.ytimg.com/vi/" + w.youtube + "/maxresdefault.jpg";
-      var ytMq  = "https://i.ytimg.com/vi/" + w.youtube + "/mqdefault.jpg";
-      var onErr = "if(!this.dataset.f){this.dataset.f=1;this.src='" + ytMq + "';}" +
-                  "else if(this.dataset.f==1){this.dataset.f=2;this.src='" + w.thumb + "';}";
+      // Cover cascade: YouTube maxres (HD) → mqdefault (clean 16:9) → local placeholder.
+      // NOTE: when a quality is missing, YouTube serves a 120x90 GREY placeholder with a
+      // 404 body, which the browser counts as a successful load — so we step down both on a
+      // hard error AND when the loaded image is that tiny placeholder.
+      var covers = [
+        "https://i.ytimg.com/vi/" + w.youtube + "/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/" + w.youtube + "/mqdefault.jpg",
+        w.thumb
+      ];
 
       card.innerHTML =
         '<div class="work-card__thumb">' +
-          '<img src="' + ytMax + '" alt="' + w.title + ' cover" loading="lazy" decoding="async" width="480" height="300" onerror="' + onErr + '" />' +
+          '<img alt="' + w.title + ' cover" loading="lazy" decoding="async" width="480" height="300" />' +
           '<span class="work-card__play"><span aria-hidden="true">▶</span></span>' +
         '</div>' +
         '<div class="work-card__meta">' +
           '<h3 class="work-card__title">' + w.title + '</h3>' +
           '<div class="work-card__tags"><span>' + w.role + '</span></div>' +
         '</div>';
+
+      (function () {
+        var img = card.querySelector(".work-card__thumb img");
+        var qi = 0;
+        function step() { if (qi < covers.length - 1) { qi++; img.src = covers[qi]; } }
+        img.addEventListener("error", step);
+        img.addEventListener("load", function () {
+          if (this.naturalWidth && this.naturalWidth <= 120) step(); // YouTube "missing" grey placeholder is 120x90
+        });
+        img.src = covers[0];
+      })();
 
       card.addEventListener("click", function () { openModal(w.youtube, card.dataset.caption); });
       grid.appendChild(card);
