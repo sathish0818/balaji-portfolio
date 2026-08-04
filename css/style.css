@@ -167,6 +167,10 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .loader.is-done .loader__panel--top { transform: translateY(-101%); }
 .loader.is-done .loader__panel--bottom { transform: translateY(101%); }
 .loader.is-done .loader__aura, .loader.is-done .loader__stage { opacity: 0; transition: opacity 0.35s var(--ease); }
+/* Once the intro is finishing, let clicks pass through, then fully remove it.
+   (Without these, the transparent full-screen loader keeps eating every click.) */
+.loader.is-done { pointer-events: none; }
+.loader[hidden] { display: none !important; }
 body.is-loading { overflow: hidden; height: 100vh; }
 
 /* Aurora gradient backdrop */
