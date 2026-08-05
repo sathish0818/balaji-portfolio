@@ -137,7 +137,7 @@
     }, { passive: true });
   })();
 
-  /* ---------- 6. NAV hide-on-scroll-down ---------- */
+  /* ---------- 6. NAV hide-on-scroll-down (reveals on scroll-up or hover-at-top) ---------- */
   (function navScroll() {
     var nav = document.getElementById("nav");
     if (!nav) return;
@@ -147,6 +147,12 @@
       if (y > last && y > 200) { nav.classList.add("is-hidden"); }
       else { nav.classList.remove("is-hidden"); }
       last = y;
+    }, { passive: true });
+
+    // Bring the header back when the pointer moves near the top of the screen,
+    // so you can reach the nav links without scrolling up.
+    window.addEventListener("mousemove", function (e) {
+      if (e.clientY <= 90) nav.classList.remove("is-hidden");
     }, { passive: true });
   })();
 })();
