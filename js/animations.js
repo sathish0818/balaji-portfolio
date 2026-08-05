@@ -149,10 +149,23 @@
       last = y;
     }, { passive: true });
 
-    // Bring the header back when the pointer moves near the top of the screen,
-    // so you can reach the nav links without scrolling up.
+    // Reveal the header when the pointer is near the top of the screen; once the
+    // pointer leaves that zone, hide it again 2s later (only while scrolled down).
+    var hideTimer = null;
+    var overTop = false;
     window.addEventListener("mousemove", function (e) {
-      if (e.clientY <= 90) nav.classList.remove("is-hidden");
+      var inTop = e.clientY <= 90;
+      if (inTop && !overTop) {
+        overTop = true;
+        clearTimeout(hideTimer);
+        nav.classList.remove("is-hidden");
+      } else if (!inTop && overTop) {
+        overTop = false;
+        clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(function () {
+          if (window.scrollY > 200) nav.classList.add("is-hidden");
+        }, 2000);
+      }
     }, { passive: true });
   })();
 })();
