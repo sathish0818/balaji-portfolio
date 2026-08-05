@@ -56,7 +56,7 @@
 .hero__hi { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--muted); font-size: 1.1rem; background: var(--surface); padding: 0.5rem 1rem; border-radius: var(--pill); border: 1px solid var(--border); }
 .wave { display: inline-block; animation: wave 2.4s var(--ease) infinite; transform-origin: 70% 70%; }
 @keyframes wave { 0%,60%,100% { transform: rotate(0); } 10%,30% { transform: rotate(16deg); } 20% { transform: rotate(-12deg); } }
-.hero__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.02; letter-spacing: -0.03em; margin: 1.1rem 0 1.2rem; }
+.hero__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.12; letter-spacing: -0.005em; margin: 1.1rem 0 1.2rem; }
 .hero__lead { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.2rem); max-width: 42ch; }
 .hero__cta { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1.8rem 0; }
 .hero__stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 0.5rem; border-top: 1px solid var(--border); }
