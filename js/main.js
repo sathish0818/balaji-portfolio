@@ -31,18 +31,17 @@
 
   /* ============================================================
      ⭐ VOICES / COLLABORATORS — EDIT THIS ARRAY
-     `img` = profile photo in assets/images/voices/ (save each person's
-             Instagram picture there; a colored-initials avatar shows
-             automatically until the file exists).
-     `hex` = fallback avatar colour. `c` = accent CSS var for the card.
+     `img`  = profile photo path (or null → coloured-initials fallback).
+     `bgSize`/`bgPos` = per-photo zoom + focus so the avatar crops to the face.
+     `hex`  = fallback avatar colour. `c` = accent CSS var for the card.
      ============================================================ */
   var VOICES = [
-    { name: "Venkat Balamurali",  role: "Reels & Music Videos", handle: "@venkat_balamurali",     url: "https://www.instagram.com/venkat_balamurali",     img: "assets/images/voices/venkat.jpg",      blurb: "Teamed up on a run of Instagram reels and music videos. Fast turnarounds, sharp cuts, always on the beat.", c: "var(--c-pink)",   hex: "#EC4899" },
-    { name: "Subramanian Sethu",  role: "Instagram Videos",     handle: "@subramanian__sethu",     url: "https://www.instagram.com/subramanian__sethu",     img: "assets/images/voices/subramanian.jpg", blurb: "Collaborated on a series of Instagram videos. Balaji shaped the pacing and made every frame land.", c: "var(--c-teal)",   hex: "#14B8A6" },
-    { name: "Arunachalam",        role: "Instagram Videos",     handle: "@arunachaleswaran.pa",    url: "https://www.instagram.com/arunachaleswaran.pa",    img: "assets/images/voices/arunachalam.jpg", blurb: "Worked together on Instagram videos. Clean, snappy edits that kept the audience watching.", c: "var(--c-yellow)", hex: "#F5B912" },
-    { name: "Oliver Nathaneal",   role: "Short Films",          handle: "@oliver_nathaneal",       url: "https://www.instagram.com/oliver_nathaneal",       img: "assets/images/voices/oliver.jpg",      blurb: "Partnered on short films. Balaji brought structure and emotion to the edit, scene after scene.", c: "var(--c-purple)", hex: "#7C3AED" },
-    { name: "Jagabar",            role: "Reels",                handle: "@jagabar_jakirathai",     url: "https://www.instagram.com/jagabar_jakirathai",     img: "assets/images/voices/jagabar.jpg",     blurb: "Cut a run of reels together. Punchy pacing that keeps thumbs from scrolling.", c: "var(--c-blue)",   hex: "#3B82F6" },
-    { name: "DAC Developers",     role: "Reel Edits",           handle: "@dacdeveloperspvtltd",    url: "https://www.instagram.com/dacdeveloperspvtltd",    img: "assets/images/voices/dac.jpg",         blurb: "Cut a set of brand reels. Crisp edits that kept the message clear and the scroll stopping.", c: "var(--c-coral)",  hex: "#FB7185" }
+    { name: "Venkat Balamurali",  role: "Reels & Music Videos", handle: "@venkat_balamurali",     url: "https://www.instagram.com/venkat_balamurali",     img: "assets/images/Venkat.JPG",       bgSize: "139.5%", bgPos: "3% 7%",     blurb: "Teamed up on a run of Instagram reels and music videos. Fast turnarounds, sharp cuts, always on the beat.", c: "var(--c-pink)",   hex: "#EC4899" },
+    { name: "Subramanian Sethu",  role: "Instagram Videos",     handle: "@subramanian__sethu",     url: "https://www.instagram.com/subramanian__sethu",     img: "assets/images/Subramani.JPG",    bgSize: "106%",   bgPos: "50% 52%",   blurb: "Collaborated on a series of Instagram videos. Balaji shaped the pacing and made every frame land.", c: "var(--c-teal)",   hex: "#14B8A6" },
+    { name: "Arunachalam",        role: "Instagram Videos",     handle: "@arunachaleswaran.pa",    url: "https://www.instagram.com/arunachaleswaran.pa",    img: "assets/images/Arunachallam.JPG", bgSize: "133%",   bgPos: "48% 15%",   blurb: "Worked together on Instagram videos. Clean, snappy edits that kept the audience watching.", c: "var(--c-yellow)", hex: "#F5B912" },
+    { name: "Oliver Nathaneal",   role: "Short Films",          handle: "@oliver_nathaneal",       url: "https://www.instagram.com/oliver_nathaneal",       img: "assets/images/Oliver.JPG",       bgSize: "151%",   bgPos: "50% 13%",   blurb: "Partnered on short films. Balaji brought structure and emotion to the edit, scene after scene.", c: "var(--c-purple)", hex: "#7C3AED" },
+    { name: "Jagabar",            role: "Reels",                handle: "@jagabar_jakirathai",     url: "https://www.instagram.com/jagabar_jakirathai",     img: "assets/images/Jagabar.JPG",      bgSize: "212%",   bgPos: "46% 41%",   blurb: "Cut a run of reels together. Punchy pacing that keeps thumbs from scrolling.", c: "var(--c-blue)",   hex: "#3B82F6" },
+    { name: "DAC Developers",     role: "Reel Edits",           handle: "@dacdeveloperspvtltd",    url: "https://www.instagram.com/dacdeveloperspvtltd",    img: null,                             blurb: "Cut a set of brand reels. Crisp edits that kept the message clear and the scroll stopping.", c: "var(--c-coral)",  hex: "#FB7185" }
   ];
 
   /* small helper */
@@ -152,12 +151,21 @@
       var p = name.trim().split(/\s+/);
       return (p.length > 1 ? p[0][0] + p[1][0] : name.slice(0, 2)).toUpperCase();
     }
-    // Colored-initials avatar used until a real photo is dropped in assets/images/voices/
+    // Colored-initials avatar used when a collaborator has no photo (e.g. a company).
     function fallbackAvatar(name, hex) {
       var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">' +
         '<rect width="120" height="120" rx="60" fill="' + hex + '"/>' +
         '<text x="60" y="76" font-family="Syne, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff" text-anchor="middle">' + initials(name) + '</text></svg>';
       return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+    }
+    // Avatars render as a background image so each photo can be cropped/zoomed to the
+    // face (bgSize + bgPos, tuned per person). No photo → coloured-initials fallback.
+    function avatarStyle(v) {
+      var src = v.img ? v.img : fallbackAvatar(v.name, v.hex);
+      var size = v.img ? v.bgSize : "cover";
+      var pos = v.img ? v.bgPos : "center";
+      return "display:inline-block;flex:0 0 auto;background-image:url('" + src + "');" +
+             "background-size:" + size + ";background-position:" + pos + ";background-repeat:no-repeat;";
     }
 
     VOICES.forEach(function (v) {
@@ -165,16 +173,13 @@
       card.style.setProperty("--c", v.c);
       card.innerHTML =
         '<div class="testimonial__head">' +
-          '<img class="testimonial__avatar" src="' + v.img + '" alt="' + v.name + '" loading="lazy" width="54" height="54" />' +
+          '<span class="testimonial__avatar" role="img" aria-label="' + v.name + '" style="' + avatarStyle(v) + '"></span>' +
           '<div><p class="testimonial__name">' + v.name + '</p><p class="testimonial__role">' + v.role + '</p></div>' +
         '</div>' +
         '<p class="testimonial__blurb" style="font-size:1rem;color:var(--text)">' + v.blurb + '</p>' +
         '<a class="testimonial__link" href="' + v.url + '" target="_blank" rel="noopener noreferrer" ' +
           'style="margin-top:auto;display:inline-flex;align-items:center;gap:0.35rem;font-weight:700;font-size:0.9rem;color:var(--c)">' +
           v.handle + ' <span aria-hidden="true">↗</span></a>';
-
-      var img = card.querySelector(".testimonial__avatar");
-      img.addEventListener("error", function () { this.onerror = null; this.src = fallbackAvatar(v.name, v.hex); });
 
       grid.appendChild(card);
       if (window.__observeReveal) window.__observeReveal(card);
