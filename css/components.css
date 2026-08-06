@@ -20,8 +20,6 @@
 .nav__brand-dot { color: var(--primary); }
 .nav__logo { position: relative; display: block; width: 46px; height: 46px; border-radius: 11px; background: #7C3AED; }
 .nav__logo::after { content: ""; position: absolute; inset: 0; background: #fff; -webkit-mask: url("../assets/icons/logo-b.svg?v=1") no-repeat center / contain; mask: url("../assets/icons/logo-b.svg?v=1") no-repeat center / contain; }
-:root[data-theme="dark"] .nav__logo { background: #fff; }
-:root[data-theme="dark"] .nav__logo::after { background: #7C3AED; }
 .nav__links { display: flex; gap: 0.4rem; }
 .nav__links a { font-weight: 600; font-size: 0.95rem; padding: 0.5rem 0.9rem; border-radius: var(--pill); transition: background 0.2s var(--ease), color 0.2s var(--ease); }
 .nav__links a:hover { background: var(--primary-100); color: var(--primary); }
