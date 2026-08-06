@@ -187,7 +187,8 @@
   })();
 
   /* ============================================================
-     CONTACT FORM — validation + success animation (no backend)
+     CONTACT FORM — validation + Web3Forms email delivery + success animation
+     Submissions POST to Web3Forms (access_key in the form) → ganesanbalaji4@gmail.com
      ============================================================ */
   (function contactForm() {
     var form = document.getElementById("contactForm");
@@ -226,6 +227,19 @@
       });
     });
 
+    // General (form-level) error line, created on demand.
+    function showFormError(msg) {
+      var box = form.querySelector(".form-error");
+      if (!box) {
+        box = el("p", "form-error");
+        box.setAttribute("role", "alert");
+        box.style.cssText = "grid-column:1/-1;color:var(--c-coral);font-weight:700;font-size:0.9rem;margin-top:0.2rem";
+        var btn = form.querySelector('button[type="submit"]');
+        form.insertBefore(box, btn.nextSibling);
+      }
+      box.textContent = msg;
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!validate()) {
@@ -233,9 +247,31 @@
         if (firstBad) firstBad.focus();
         return;
       }
-      // No backend: reveal success animation. (Wire to Formspree/Netlify Forms if desired.)
-      form.querySelectorAll(".field, .btn").forEach(function (n) { n.style.display = "none"; });
-      if (success) { success.hidden = false; }
+
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      showFormError(""); // clear any previous error
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            // Reveal success animation.
+            form.querySelectorAll(".field, .btn, .form-error").forEach(function (n) { n.style.display = "none"; });
+            if (success) { success.hidden = false; }
+          } else {
+            throw new Error((data && data.message) || "Submission failed");
+          }
+        })
+        .catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+          showFormError("Sorry, something went wrong sending your message. Please email ganesanbalaji4@gmail.com directly.");
+        });
     });
   })();
 
