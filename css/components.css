@@ -18,7 +18,7 @@
 .nav__brand { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
 .nav__brand-mark { width: 32px; height: 32px; border-radius: 10px; background: var(--grad); color: #fff; display: grid; place-items: center; font-size: 1rem; transform: rotate(-6deg); }
 .nav__brand-dot { color: var(--primary); }
-.nav__logo { position: relative; display: block; width: 46px; height: 46px; border-radius: 11px; background: #7C3AED; }
+.nav__logo { position: relative; display: block; width: 46px; height: 46px; border-radius: 50%; background: #7C3AED; }
 .nav__logo::after { content: ""; position: absolute; inset: 0; background: #fff; -webkit-mask: url("../assets/icons/logo-b.svg?v=1") no-repeat center / contain; mask: url("../assets/icons/logo-b.svg?v=1") no-repeat center / contain; }
 .nav__links { display: flex; gap: 0.4rem; }
 .nav__links a { font-weight: 600; font-size: 0.95rem; padding: 0.5rem 0.9rem; border-radius: var(--pill); transition: background 0.2s var(--ease), color 0.2s var(--ease); }
